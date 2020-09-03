@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+ 
+<title>Sales Manager Application</title>
+</head>
+<body>
+
+<div class="container">
+
+<h3 class="text-center display-3 mb-5">Sales Records</h3>
+
+<a th:href="@{/showFormForAdd}" class="btn btn-sm btn-primary">Enter new Item</a>
+
+<table class="table table-bordered table-striped mt-5">
+	<thead class="thead-dark">
+	  <tr>
+		<th>ID</th>
+		<th>Item Name</th>
+		<th>Quantity</th>
+		<th>Amount(€)</th>
+		<th>Actions</th>
+		</tr>
+	</thead>
+	
+	<tbody>
+		<tr th:each="tempSale : ${sales}">
+			<td th:text = "${tempSale.id}"></td>
+			<td th:text = "${tempSale.item}"></td>
+			<td th:text = "${tempSale.quantity}"></td>
+			<td th:text = "${tempSale.amount}"></td>
+			<td>
+				<a th:href="@{'/edit/' +${tempSale.id}}" class="btn btn-sm btn-warning">Update</a>
+				 &nbsp;| &nbsp;
+				<a th:href="@{'/delete/'+${tempSale.id}}" class="btn btn-sm btn-danger">Delete</a>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+</div>
+
+</body>
+</html>
